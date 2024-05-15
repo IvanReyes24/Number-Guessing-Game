@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="">
+      <h1 id="maxmin"></h1>
+      <h2 id="answer"></h2>
+      <input type="text" id="userGuess" />
+      <h3 id="result"></h3>
+			<button type="button" onclick="game()">Guess</button>
+			<button type="button" onclick="ReloadLocation()">Refresh</button>
+    </form>
+
+    <script>
+				let min = 1;
+				let max = 100;
+				let maxmin = document.getElementById("maxmin");
+				maxmin.innerHTML = `Guess a number between ${min} to ${max} `;
+
+				let randnum = Math.floor(Math.random() * (max - min) +1) + min;
+				console.log(randnum);
+				let attempt = 0;
+			function game(){
+				
+				let userGuessNum = document.getElementById("userGuess").value;
+				let answer = document.getElementById("answer");
+				let result = document.getElementById("result");
+				
+				let logged = true;
+				
+				if(logged){
+					if(isNaN(userGuessNum)){
+						result.innerHTML = "not a number";
+					}else if(userGuessNum < min || userGuessNum > max){
+						result.innerHTML = "your answer is above the maxnimun or below the minimun"
+					}else{
+						attempt++;
+						if(userGuessNum > randnum){
+							result.innerHTML = `Lower than ${userGuessNum}`
+						}else if(userGuessNum <  randnum){
+							result.innerHTML = `higher than ${userGuessNum}`
+						}else{
+							result.innerHTML = `Edi nice ${randnum} is the answer you have ${attempt} attempts`;
+							logged = false;
+							
+						}
+					}
+
+
+					
+				}
+			}
+
+			function ReloadLocation() {
+            location.reload();
+        }
+      
+    </script>
+  </body>
+</html>
